@@ -26,6 +26,11 @@ Managers can review these requests and approve or reject them through a workflow
 - Automatic asset creation after approval (bonus feature)
 
 ---
+## Demo Video
+
+Watch the demonstration of the system here:
+
+https://drive.google.com/file/d/1sTK1qvdyz_k61afQm6d1vDtGowULKGVW/view?usp=sharing
 
 # Installation
 
@@ -131,3 +136,132 @@ bench get-app erpnext --branch version-15
 
 Installation Complete
 bench -–site <sitename> install-app <app_name>
+
+
+# Steps to Test the Functionality
+
+Step 1: Create Items
+
+Create sample items such as:
+
+Laptop
+Monitor
+Keyboard
+Mouse
+Headset
+
+Go to:
+
+Stock → Item → New
+
+Enable Maintain Stock for the item.
+
+Step 2: Add Stock
+
+Add inventory using Stock Entry.
+
+Go to:
+
+Stock → Stock Entry → New
+
+Add quantity for the items created.
+
+Step 3: Create Asset Request
+
+Go to:
+
+Asset Request → New
+
+Fill the following fields:
+
+Employee
+
+Department (auto fetched)
+
+Request Date
+
+Add items with:
+
+Item Name
+
+Quantity
+
+Estimated Price
+
+The system will automatically calculate:
+
+Amount = Quantity × Estimated Price
+Total Estimated Cost
+
+Step 4: Validation
+
+If the total estimated cost exceeds ₹50,000, the system will show an error.
+
+Step 5: Check Inventory
+
+Click Check Inventory button to verify available quantity of items.
+
+Step 6: Workflow Approval
+
+Submit the request for approval.
+
+Workflow states:
+
+Draft → Pending Approval → Approved / Rejected
+
+Only authorized users (Managers) can approve or reject requests.
+
+Step 7: Automatic Asset Creation
+
+When a request is Approved, asset records are automatically created in the system.
+
+You can verify this by going to:
+
+Assets → Asset List
+Step 8: View Summary Report
+
+Go to:
+
+# Reports → Asset Request Summary
+
+Filters available:
+
+Date Range
+Employee
+Status
+The report displays:
+Employee
+Requested Items
+Quantity
+Amount
+Approval Status
+Request Date
+
+# Screenshots
+
+Screenshots demonstrating the functionality are included in the screenshots/ folder.
+
+Examples:
+
+Asset Request Form
+Workflow Approval
+Inventory Check
+Validation Message
+Summary Report
+
+# Assumptions Made During Development
+
+The following assumptions were made during development:
+
+Items are already created in the system.
+Inventory is managed through ERPNext Stock module.
+Managers have permission to approve or reject asset requests.
+Asset categories and asset locations are configured in the system.
+Employees can request multiple items in a single asset request.
+
+# Technologies Used
+
+Frappe Framework
+Python
+MariaDB
+ERPNext modules (Stock, Asset)
