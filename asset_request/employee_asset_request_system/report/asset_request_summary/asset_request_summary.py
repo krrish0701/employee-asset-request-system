@@ -2,6 +2,9 @@ import frappe
 
 def execute(filters=None):
 
+    if not filters:
+        filters = {}
+
     columns = [
         {
             "label": "Employee",
@@ -14,7 +17,7 @@ def execute(filters=None):
             "label": "Item",
             "fieldname": "item_name",
             "fieldtype": "Data",
-            "width": 150
+            "width": 180
         },
         {
             "label": "Quantity",
@@ -23,10 +26,10 @@ def execute(filters=None):
             "width": 100
         },
         {
-            "label": "Total Estimated Cost",
-            "fieldname": "total_estimated_cost",
+            "label": "Amount",
+            "fieldname": "amount",
             "fieldtype": "Currency",
-            "width": 150
+            "width": 140
         },
         {
             "label": "Status",
@@ -42,7 +45,7 @@ def execute(filters=None):
         }
     ]
 
-    conditions = ""
+    conditions = "1=1"
 
     if filters.get("employee"):
         conditions += " AND ar.employee = %(employee)s"
@@ -58,7 +61,7 @@ def execute(filters=None):
             ar.employee,
             ari.item_name,
             ari.quantity,
-            ar.total_estimated_cost,
+            ari.amount,
             ar.workflow_state,
             ar.request_date
         FROM
@@ -68,8 +71,9 @@ def execute(filters=None):
         ON
             ar.name = ari.parent
         WHERE
-            ar.docstatus < 2
             {conditions}
+        ORDER BY
+            ar.request_date DESC
     """, filters, as_dict=True)
 
     return columns, data

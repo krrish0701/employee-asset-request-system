@@ -21,14 +21,3 @@ class AssetRequest(Document):
         if self.total_estimated_cost > 50000:
             frappe.throw("Total estimated cost cannot exceed ₹50,000")
 
-def on_submit(self):
-
-    if self.status == "Approved":
-
-        for item in self.items:
-
-            asset = frappe.new_doc("Asset")
-            asset.asset_name = item.item_name
-            asset.asset_category = "Electronic Equipment"
-            asset.location = "Main Office"
-            asset.insert(ignore_permissions=True)
