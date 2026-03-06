@@ -1,41 +1,33 @@
-### Employee Asset Request System
+# Employee Asset Request System
 
-Build a small system where employees can submit requests for company assets such as
+The **Employee Asset Request System** is a custom application built using the **Frappe Framework** that allows employees to request company assets such as laptops, monitors, keyboards, etc.
 
-### Installation
+Managers can review these requests and approve or reject them through a workflow process. The system also includes automatic calculations, validation rules, inventory checking, reporting, and automatic asset creation after approval.
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
+---
+
+## Features
+
+- Employees can create asset requests with multiple items
+- Automatic calculation of item amount and total estimated cost
+- Employee information auto-fetch (department)
+- Validation rules:
+  - Quantity must be greater than 0
+  - Total estimated cost cannot exceed ₹50,000
+- Approval workflow (Draft → Pending Approval → Approved / Rejected)
+- Inventory check for requested items
+- Summary report with filters (Date, Employee, Status)
+- Automatic asset creation when request is approved
+
+---
+
+## Installation
+
+Install the app using the **bench CLI**:
 
 ```bash
 cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app asset_request
-```
-
-### Contributing
-
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
-
-```bash
-cd apps/asset_request
-pre-commit install
-```
-
-Pre-commit is configured to use the following tools for checking and formatting your code:
-
-- ruff
-- eslint
-- prettier
-- pyupgrade
-
-### CI
-
-This app can use GitHub Actions for CI. The following workflows are configured:
-
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
-
-
-### License
-
-mit
+bench get-app https://github.com/krrish0701/employee-asset-request-system
+bench --site your-site-name install-app asset_request
+bench migrate
+bench start

@@ -1,7 +1,29 @@
-.DS_Store
+# Python
+__pycache__/
 *.pyc
-*.egg-info
+*.pyo
+*.pyd
+
+# Frappe
+sites/
+logs/
+node_modules/
+
+# Virtual environments
+.env
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build files
+*.egg-info/
+dist/
+build/
+
+# Editor files
 *.swp
-tags
-node_modules
-__pycache__
+.vscode/
+.idea/
